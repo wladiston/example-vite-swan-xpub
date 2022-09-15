@@ -1,5 +1,6 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
+// @ts-ignore - @swan-bitcoin/xpub-lib does not support typescript yet
 import { addressFromExtPubKey } from "@swan-bitcoin/xpub-lib";
 import "./App.css";
 
@@ -9,7 +10,8 @@ function App() {
   const key =
     "xpub6EuV33a2DXxAhoJTRTnr8qnysu81AA4YHpLY6o8NiGkEJ8KADJ35T64eJsStWsmRf1xXkEANVjXFXnaUKbRtFwuSPCLfDdZwYNZToh4LBCd";
 
-  addressFromExtPubKey({ extPubKey: key, network: "mainnet" });
+  const result = addressFromExtPubKey({ extPubKey: key, network: "mainnet" });
+  console.log(result);
 
   return (
     <div className="App">
@@ -33,6 +35,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      <pre>{JSON.stringify(result, null, 2)}</pre>
     </div>
   );
 }
